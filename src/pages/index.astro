@@ -1,11 +1,190 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Base from '../layouts/Base.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const navItems = [
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Writing',   href: '/writing'   },
+  { label: 'Speaking',  href: '/speaking'  },
+  { label: 'Résumé',    href: '/resume'    },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Base title="Ayo Suber">
+  <main class="index">
+
+    <!-- Top bar -->
+    <header class="top">
+      <span class="name">Ayo Suber</span>
+      <span class="status">
+        <span class="dot"></span>
+        Available for collaboration
+      </span>
+    </header>
+
+    <!-- Center bio paragraph -->
+    <div class="bio">
+      <p>
+        Creative Technologist, Engineer, Writer, and Speaker. Based in San Francisco. Building interactive experiences<br class="br-sm" />
+        <em>where design and code meet.</em>
+      </p>
+    </div>
+
+    <!-- Bottom nav -->
+    <nav class="bottom-nav">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link" data-label={item.label}>
+          <span class="nav-label">{item.label}</span>
+          <span class="nav-arrow">↗</span>
+        </a>
+      ))}
+    </nav>
+
+  </main>
+</Base>
+
+<style>
+  .index {
+    height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 28px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle grid texture */
+  .index::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* ---- TOP ---- */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .name {
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3ecf60;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* ---- BIO ---- */
+  .bio {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 4px;
+    max-width: 1300px;
+     margin: 0 auto;
+  }
+
+  .bio p {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.5vw, 62px);
+    line-height: 1.18;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .bio em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* ---- BOTTOM NAV ---- */
+  .bottom-nav {
+    display: flex;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--faint);
+    padding-top: 20px;
+    justify-content: space-between;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    transition: color 0.18s;
+    padding: 4px 0;
+    cursor: pointer;
+  }
+
+  .nav-link:hover {
+    color: var(--white);
+  }
+
+  .nav-arrow {
+    font-size: 10px;
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.18s, transform 0.18s;
+  }
+
+  .nav-link:hover .nav-arrow {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* random accent on one nav item — set by JS */
+  .nav-link.highlighted {
+    color: var(--accent);
+  }
+
+  .br-sm { display: none; }
+
+  @media (max-width: 600px) {
+    .index { padding: 20px 20px; }
+    .status { display: none; }
+    .bottom-nav { gap: 0; flex-wrap: wrap; row-gap: 12px; }
+    .br-sm { display: inline; }
+  }
+</style>
+
+<script>
+  // Randomly highlight one nav item on each load
+  const links = document.querySelectorAll('.nav-link');
+  const pick  = Math.floor(Math.random() * links.length);
+  links[pick].classList.add('highlighted');
+</script>

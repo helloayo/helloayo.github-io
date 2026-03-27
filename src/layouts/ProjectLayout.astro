@@ -1,0 +1,393 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title:       string;
+  year:        string;
+  tags:        string[];
+  description: string;
+  liveUrl?:    string;
+  prevSlug?:   string;
+  prevTitle?:  string;
+  nextSlug?:   string;
+  nextTitle?:  string;
+}
+
+const {
+  title,
+  year,
+  tags,
+  description,
+  liveUrl,
+  prevSlug,
+  prevTitle,
+  nextSlug,
+  nextTitle,
+} = Astro.props;
+---
+
+<Base title={`${title} — Ayo Suber`}>
+  <div class="project-wrap">
+
+    <!-- Top bar -->
+    <header class="project-header">
+      <a href="/portfolio" class="back">
+        <span class="back-arrow">←</span>
+        <span>Work</span>
+      </a>
+      {liveUrl && (
+        <a href={liveUrl} target="_blank" rel="noopener" class="live-link">
+          View live ↗
+        </a>
+      )}
+    </header>
+
+    <!-- Hero -->
+    <div class="project-hero">
+      <div class="project-meta-row">
+        <span class="project-year">{year}</span>
+        <ul class="project-tags">
+          {tags.map(t => <li>{t}</li>)}
+        </ul>
+      </div>
+      <h1 class="project-title">{title}</h1>
+      <p class="project-desc">{description}</p>
+    </div>
+
+    <!-- Content slot -->
+    <div class="project-content">
+      <slot />
+    </div>
+
+    <!-- Prev / Next -->
+    {(prevSlug || nextSlug) && (
+      <nav class="project-nav">
+        <div class="project-nav-inner">
+          {prevSlug ? (
+            <a href={`/portfolio/${prevSlug}`} class="nav-project nav-prev">
+              <span class="nav-dir">← Previous</span>
+              <span class="nav-title">{prevTitle}</span>
+            </a>
+          ) : <div />}
+          {nextSlug ? (
+            <a href={`/portfolio/${nextSlug}`} class="nav-project nav-next">
+              <span class="nav-dir">Next →</span>
+              <span class="nav-title">{nextTitle}</span>
+            </a>
+          ) : <div />}
+        </div>
+      </nav>
+    )}
+
+  </div>
+</Base>
+
+<style>
+  .project-wrap {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 36px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ---- HEADER ---- */
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.18s;
+    letter-spacing: 0.04em;
+  }
+
+  .back:hover { color: var(--white); }
+  .back:hover .back-arrow { transform: translateX(-4px); }
+
+  .back-arrow { transition: transform 0.18s; display: inline-block; }
+
+  .live-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 8px 16px;
+    transition: background 0.18s, color 0.18s;
+  }
+
+  .live-link:hover {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  /* ---- HERO ---- */
+  .project-hero {
+    margin-bottom: 80px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .project-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .project-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .project-tags li {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border: 1px solid #1a1a1a;
+    padding: 3px 10px;
+    text-transform: uppercase;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .project-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ---- CONTENT ---- */
+  .project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  /* ---- PREV / NEXT ---- */
+  .project-nav {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .project-nav-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .nav-project {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: opacity 0.18s;
+  }
+
+  .nav-project:hover { opacity: 0.7; }
+
+  .nav-next { text-align: right; }
+
+  .nav-dir {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .nav-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 600px) {
+    .project-wrap { padding: 20px 20px 60px; }
+    .project-header { margin-bottom: 48px; }
+    .project-hero { margin-bottom: 48px; padding-bottom: 40px; }
+    .project-nav-inner { grid-template-columns: 1fr; }
+    .nav-next { text-align: left; }
+  }
+</style>
+
+<!-- Shared case study content styles, used by all project pages via <slot> -->
+<style is:global>
+  /* Section block */
+  .cs-section {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .cs-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 4px;
+    position: sticky;
+    top: 28px;
+  }
+
+  .cs-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cs-body p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .cs-body strong {
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* Embed frame */
+  .cs-embed {
+    width: 100%;
+    border: 1px solid #1a1a1a;
+    background: #0d0d0d;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cs-embed iframe {
+    width: 100%;
+    border: none;
+    display: block;
+  }
+
+  .cs-embed-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .cs-embed-label span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  .cs-embed-label a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* Stack list — tech used */
+  .cs-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .cs-stack li {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border: 1px solid #1a1a1a;
+    padding: 5px 12px;
+  }
+
+  /* Video */
+  .cs-video {
+    width: 100%;
+    border: 1px solid #1a1a1a;
+    background: #0d0d0d;
+    overflow: hidden;
+  }
+
+  .cs-video video {
+    width: 100%;
+    display: block;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
+  .cs-video-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .cs-video-label span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  .cs-video-label a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .cs-divider {
+    height: 1px;
+    background: #1a1a1a;
+    border: none;
+  }
+
+  @media (max-width: 700px) {
+    .cs-section {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .cs-label { position: static; }
+  }
+</style>

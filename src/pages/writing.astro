@@ -1,0 +1,465 @@
+---
+import Page from '../layouts/Page.astro';
+
+import hvaw             from '../assets/writing/hvaw.png';
+import apple_flagship   from '../assets/writing/apple_flagship.png';
+import bee_mural        from '../assets/writing/bee_mural.png';
+import lowell_walkout   from '../assets/writing/lowell_walkout.png';
+import black_restaurants from '../assets/writing/black_restaurants.png';
+import aasc             from '../assets/writing/aasc.png';
+import fig_and_thistle  from '../assets/writing/fig_and_thistle.png';
+import aaac             from '../assets/writing/aaac.png';
+import cafe_la_vie      from '../assets/writing/cafe_la_vie.png';
+import rhonel           from '../assets/writing/rhonel.png';
+import mlk              from '../assets/writing/mlk.png';
+import vigil            from '../assets/writing/vigil.png';
+import beekeeping       from '../assets/writing/beekeeping.png';
+import sbs              from '../assets/writing/sbs.png';
+import cakemaker        from '../assets/writing/cakemaker.png';
+import brown_bag        from '../assets/writing/brown_bag.png';
+
+const pieces = [
+  {
+    title:       'Hayes Valley Art Works Plots New Exhibits, Interactive Art, Theater, More',
+    publication: 'Hoodline',
+    year:        '2016',
+    tag:         'Culture',
+    image:       hvaw.src,
+    href:        'https://hoodline.com/2016/08/hayes-valley-art-works-plots-new-exhibits-interactive-art-theater-more',
+  },
+  {
+    title:       "Apple's Union Square Flagship Store Celebrates Grand Opening Tomorrow",
+    publication: 'Hoodline',
+    year:        '2016',
+    tag:         'Tech',
+    image:       apple_flagship.src,
+    href:        'https://hoodline.com/2016/05/apple-union-square-flagship-grand-opening',
+  },
+  {
+    title:       'As Part Of Revitalization Effort, New Bee Mural Buzzes Into Ivy Alley',
+    publication: 'Hoodline',
+    year:        '2016',
+    tag:         'Art',
+    image:       bee_mural.src,
+    href:        'https://hoodline.com/2016/02/as-part-of-revitalization-effort-new-bee-mural-buzzes-into-ivy-alley',
+  },
+  {
+    title:       'Protesting Racist Incidents, Lowell High School Students Walk Out',
+    publication: 'Hoodline',
+    year:        '2016',
+    tag:         'News',
+    image:       lowell_walkout.src,
+    href:        'https://hoodline.com/2016/02/protesting-racist-incidents-lowell-high-school-students-walk-out',
+  },
+  {
+    title:       'Where To Celebrate Black Restaurant Day Tomorrow',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Food',
+    image:       black_restaurants.src,
+    href:        'https://hoodline.com/2015/08/august-30th-is-black-restaurant-day',
+  },
+  {
+    title:       'The African-American Shakespeare Company Celebrates 20 Years Of Theater',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Culture',
+    image:       aasc.src,
+    href:        'https://hoodline.com/2015/07/meet-the-african-american-shakespeare-company',
+  },
+  {
+    title:       'Fig & Thistle Begins Retail Wine Shop Operation',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Food',
+    image:       fig_and_thistle.src,
+    href:        'https://hoodline.com/2015/07/fig-thistle-begins-retail-wine-shop-operation',
+  },
+  {
+    title:       'Resident Art Incubator Comes To The African American Arts And Culture Complex',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Art',
+    image:       aaac.src,
+    href:        'https://hoodline.com/2015/06/resident-art-incubator-comes-to-the-african-american-arts-and-culture-complex',
+  },
+  {
+    title:       'Meet Cafe La Vie, A Family-Owned Hayes Valley Coffee Shop',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Food',
+    image:       cafe_la_vie.src,
+    href:        'https://hoodline.com/2015/05/meet-cafe-la-vie-a-family-owned-hayes-valley-coffee-shop',
+  },
+  {
+    title:       'Meet Rhonel Roberts, Painting The City From Hayes Valley',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Art',
+    image:       rhonel.src,
+    href:        'https://hoodline.com/2015/04/meet-rhonel-roberts-painting-the-city-from-hayes-valley',
+  },
+  {
+    title:       'Celebrate MLK Day With These Neighborhood Events',
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Community',
+    image:       mlk.src,
+    href:        'https://hoodline.com/2015/01/celebrate-mlk-day-today-with-these-neighborhood-events',
+  },
+  {
+    title:       "Scenes From Last Night's Prayer Vigil And March",
+    publication: 'Hoodline',
+    year:        '2015',
+    tag:         'Community',
+    image:       vigil.src,
+    href:        'https://hoodline.com/2015/01/scenes-from-last-night-s-prayer-vigil-and-march',
+  },
+  {
+    title:       "Urban Beekeeping On Jardinière's Rooftop",
+    publication: 'Hoodline',
+    year:        '2014',
+    tag:         'Culture',
+    image:       beekeeping.src,
+    href:        'https://hoodline.com/2014/12/urban-beekeeping-on-jardiniere-s-rooftop',
+  },
+  {
+    title:       'Small Business Saturday Heads To Hayes Valley',
+    publication: 'Hoodline',
+    year:        '2014',
+    tag:         'Community',
+    image:       sbs.src,
+    href:        'https://hoodline.com/2014/11/small-business-saturday-heads-to-hayes-valley',
+  },
+  {
+    title:       "Meet The Cakemaker, Hayes Valley's Undercover Baker",
+    publication: 'Hoodline',
+    year:        '2014',
+    tag:         'Food',
+    image:       cakemaker.src,
+    href:        'https://hoodline.com/2014/11/meet-the-cakemaker-hayes-valley-s-undercover-baker',
+  },
+  {
+    title:       'Brown Bag Outreach Hits Tenderloin/Civic Center Streets',
+    publication: 'Hoodline',
+    year:        '2014',
+    tag:         'Community',
+    image:       brown_bag.src,
+    href:        'https://hoodline.com/2014/11/brown-bag-outreach-hits-tenderloin-civic-center-streets',
+  },
+];
+---
+
+<Page title="Writing — Ayo Suber" section="Writing">
+
+  <div class="writing-header">
+    <h1 class="page-title">Writing</h1>
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btn-list" aria-label="List view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="0" y="2"  width="16" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="0" y="7"  width="16" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="0" y="12" width="16" height="1.5" rx="0.75" fill="currentColor"/>
+        </svg>
+        List
+      </button>
+      <button class="toggle-btn" id="btn-grid" aria-label="Grid view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="0" y="0" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="9" y="0" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="0" y="9" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="9" y="9" width="7" height="7" rx="1" fill="currentColor"/>
+        </svg>
+        Grid
+      </button>
+    </div>
+  </div>
+
+  <p class="writing-intro">
+    Reporting for <a href="https://hoodline.com" target="_blank" rel="noopener" class="hoodline-link">Hoodline</a>
+    — the go-to source for news about the places San Franciscans live, work, and play.
+  </p>
+
+  <!-- LIST VIEW -->
+  <ul class="writing-list" id="view-list">
+    {pieces.map((p) => (
+      <li class="writing-item">
+        <a href={p.href} target="_blank" rel="noopener" class="writing-link">
+          <span class="writing-tag">{p.tag}</span>
+          <span class="writing-title">{p.title}</span>
+          <span class="writing-pub">{p.publication}</span>
+          <span class="writing-year">{p.year}</span>
+          <span class="writing-arrow">↗</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- GRID VIEW -->
+  <div class="writing-grid" id="view-grid">
+    {pieces.map((p) => (
+      <a href={p.href} target="_blank" rel="noopener" class="writing-card">
+        <div class="card-image">
+          <img src={p.image} alt={p.title} loading="lazy" />
+          <span class="card-tag">{p.tag}</span>
+        </div>
+        <div class="card-body">
+          <p class="card-title">{p.title}</p>
+          <span class="card-meta">{p.publication} · {p.year}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+</Page>
+
+<style>
+  /* ---- HEADER ROW ---- */
+  .writing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .page-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  /* ---- TOGGLE ---- */
+  .view-toggle {
+    display: flex;
+    gap: 2px;
+    border: 1px solid #1a1a1a;
+    padding: 3px;
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .toggle-btn:hover { color: var(--white); }
+
+  .toggle-btn.active {
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  /* ---- INTRO ---- */
+  .writing-intro {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .hoodline-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ---- LIST VIEW ---- */
+  .writing-list {
+    list-style: none;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .writing-item { border-bottom: 1px solid #1a1a1a; }
+
+  .writing-link {
+    display: grid;
+    grid-template-columns: 72px 1fr auto auto 24px;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+    transition: padding 0.15s, background 0.15s;
+  }
+
+  .writing-link:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0 -12px;
+    background: #111;
+  }
+
+  .writing-link:hover .writing-title { color: var(--accent); }
+
+  .writing-link:hover .writing-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  .writing-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .writing-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--white);
+    transition: color 0.15s;
+  }
+
+  .writing-pub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-align: right;
+  }
+
+  .writing-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #2a2a2a;
+    letter-spacing: 0.04em;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .writing-arrow {
+    font-size: 14px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+
+  /* ---- GRID VIEW ---- */
+  .writing-grid {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .writing-card {
+    display: flex;
+    flex-direction: column;
+    background: #111;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .writing-card:hover { background: #161616; }
+  .writing-card:hover .card-image img { transform: scale(1.03); }
+  .writing-card:hover .card-title { color: var(--accent); }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: grayscale(20%);
+  }
+
+  .card-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--accent);
+    padding: 3px 8px;
+  }
+
+  .card-body {
+    padding: 20px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--white);
+    transition: color 0.2s;
+  }
+
+  .card-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: auto;
+  }
+
+  /* active grid state — toggled by JS */
+  .writing-grid.active {
+    display: grid;
+  }
+
+  .writing-list.hidden {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .writing-grid { grid-template-columns: 1fr; }
+    .writing-link {
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: auto auto;
+      row-gap: 6px;
+      column-gap: 12px;
+    }
+    .writing-pub  { display: none; }
+    .writing-arrow { display: none; }
+    .writing-year { text-align: right; }
+  }
+</style>
+
+<script>
+  const btnList = document.getElementById('btn-list');
+  const btnGrid = document.getElementById('btn-grid');
+  const viewList = document.getElementById('view-list');
+  const viewGrid = document.getElementById('view-grid');
+
+  btnList.addEventListener('click', () => {
+    btnList.classList.add('active');
+    btnGrid.classList.remove('active');
+    viewList.classList.remove('hidden');
+    viewGrid.classList.remove('active');
+  });
+
+  btnGrid.addEventListener('click', () => {
+    btnGrid.classList.add('active');
+    btnList.classList.remove('active');
+    viewGrid.classList.add('active');
+    viewList.classList.add('hidden');
+  });
+</script>

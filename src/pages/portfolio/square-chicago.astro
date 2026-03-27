@@ -1,0 +1,65 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import demoVideo from '../../assets/portfolio/the_future_is_built_in_chicago.mp4';
+
+const liveUrl = 'https://squareup.com/us/en/future/chi';
+---
+
+<ProjectLayout
+  title="Square: The Future Is Built in Chicago"
+  year="2021"
+  tags={['Frontend', 'Animations', 'Experimentation', 'Ecommerce']}
+  description="The Chicago edition of Square's multi-city Future Is Built Here campaign — a microsite celebrating local small businesses with custom animations and direct shopping."
+  liveUrl={liveUrl}
+  prevSlug="square-atlanta"
+  prevTitle="The Future Is Built in Atlanta"
+  nextSlug="square-podcast"
+  nextTitle="Paying It Forward Podcast"
+>
+
+  <div class="cs-section">
+    <span class="cs-label">Overview</span>
+    <div class="cs-body">
+      <p>
+        The Chicago edition of the <strong>Future Is Built Here</strong> campaign followed the same structure as Atlanta — a city-specific microsite spotlighting local Square sellers — but with a distinct visual direction tailored to the city.
+      </p>
+      <p>
+        Building the second city gave us the opportunity to refine and componentize the patterns developed in Atlanta, shipping faster with more polish.
+      </p>
+    </div>
+  </div>
+
+  <div class="cs-video">
+    <video src={demoVideo} autoplay muted loop playsinline />
+    <div class="cs-video-label">
+      <span>squareup.com/us/en/future/chi</span>
+      <a href={liveUrl} target="_blank" rel="noopener">View live ↗</a>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Contribution</span>
+    <div class="cs-body">
+      <p>
+        Frontend development across the full site — animations, responsive layout, and ecommerce integration. Refactored shared components from the Atlanta build to make the Chicago edition faster to ship and easier to maintain.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Tech stack</span>
+    <div class="cs-body">
+      <ul class="cs-stack">
+        <li>Svelte</li>
+        <li>CSS Animations</li>
+        <li>Square Ecommerce API</li>
+        <li>Headless CMS</li>
+      </ul>
+    </div>
+  </div>
+
+</ProjectLayout>

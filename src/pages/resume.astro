@@ -1,0 +1,282 @@
+---
+import Page from '../layouts/Page.astro';
+
+const experience = [
+  {
+    role:    'Design Engineer / Email Engineer',
+    company: 'Altruist',
+    period:  '2025 — 2026',
+    bullets: [
+      'Led email engineering for a full brand rebrand, rearchitecting legacy code into a modular component system compatible across all major email clients.',
+      'Built an internal Retool tool extending Sendgrid: search past mailings, promote drafts, bulk-update copy across templates, with full change logging.',
+      'Developed marketing pages for the rebrand using headless WordPress, translating design system components into production-ready responsive layouts.',
+    ],
+  },
+  {
+    role:    'Design Technologist',
+    company: 'Block (formerly Square)',
+    period:  '2020 — 2023',
+    bullets: [
+      'Built interactive microsites and marketing experiences for developer conferences and small business campaigns using Svelte and web animation.',
+      'Developed AI-powered Figma plugins using OpenAI and internal APIs — early production use of generative AI tooling.',
+      'Co-founded the Design Technologist discipline: authored best practices, defined the interview process, career frameworks, and team culture.',
+    ],
+  },
+  {
+    role:    'UI Engineer',
+    company: 'Block (formerly Square)',
+    period:  '2019 — 2020',
+    bullets: [
+      'Built and maintained the UI for Dashboard, Square\'s web-based register product.',
+      'Managed marketing and legal page infrastructure via Contentful CMS, improving content operations workflows.',
+    ],
+  },
+  {
+    role:    'Tech PM',
+    company: 'Block (formerly Square)',
+    period:  '2018',
+    bullets: [
+      'Co-built an internal email development tool that reduced team workload by 75%.',
+    ],
+  },
+  {
+    role:    'Front-End Developer',
+    company: 'BookNook',
+    period:  '2016 — 2017',
+    bullets: [
+      'Developed interactive educational content for a reading app using React Native, building responsive multi-template layouts for varied screen sizes.',
+    ],
+  },
+  {
+    role:    'Senior Programmer',
+    company: 'Accenture',
+    period:  '2007 — 2015',
+    bullets: [
+      'Consulted for enterprise clients across web, UX, and mobile — including Google, Nokia, DuPont, Autodesk, and eBay.',
+      'Led Google\'s transition to responsive email development for AdWords and Cross-Sell teams.',
+    ],
+  },
+];
+
+const education = [
+  { degree: 'MBA & BA, Marketing', school: 'Florida A&M University', year: 'FAMU' },
+];
+
+const skills = [
+  'React', 'Next.js', 'Svelte', 'TypeScript', 'Vue.js', 'Three.js',
+  'Headless WordPress', 'Contentful', 'Retool', 'Figma',
+  'OpenAI API', 'WebGL', 'Web Animations', 'Node.js', 'Ruby',
+  'Public Speaking', 'Generative Art', 'Creative Direction',
+];
+---
+
+<Page title="Résumé — Ayo Suber" section="Résumé">
+
+  <div class="resume-top">
+    <h1 class="page-title">Résumé</h1>
+    <a href="/Ayo_Suber.pdf" class="download" target="_blank" rel="noopener">
+      Download PDF ↓
+    </a>
+  </div>
+
+  <!-- Experience -->
+  <section class="resume-section">
+    <h2 class="section-head">Experience</h2>
+    <div class="exp-list">
+      {experience.map((e) => (
+        <div class="exp-item">
+          <div class="exp-left">
+            <span class="exp-period">{e.period}</span>
+          </div>
+          <div class="exp-right">
+            <div class="exp-header">
+              <span class="exp-role">{e.role}</span>
+              <span class="exp-company">{e.company}</span>
+            </div>
+            <ul class="exp-bullets">
+              {e.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="resume-section">
+    <h2 class="section-head">Skills</h2>
+    <div class="skills-grid">
+      {skills.map((s) => (
+        <span class="skill-tag">{s}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="resume-section">
+    <h2 class="section-head">Education</h2>
+    <div class="exp-list">
+      {education.map((e) => (
+        <div class="exp-item">
+          <div class="exp-left">
+            <span class="exp-period">{e.year}</span>
+          </div>
+          <div class="exp-right">
+            <div class="exp-header">
+              <span class="exp-role">{e.degree}</span>
+              <span class="exp-company">{e.school}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Page>
+
+<style>
+  .resume-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 72px;
+  }
+
+  .page-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .download {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 10px 20px;
+    transition: background 0.18s, color 0.18s;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+
+  .download:hover {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  /* sections */
+  .resume-section {
+    margin-bottom: 72px;
+  }
+
+  .section-head {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  /* experience rows */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+  }
+
+  .exp-left {
+    padding-top: 3px;
+  }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #FFF;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #2a2a2a;
+  }
+
+  /* skills */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border: 1px solid #1a1a1a;
+    padding: 6px 14px;
+    transition: border-color 0.18s, color 0.18s;
+  }
+
+  .skill-tag:hover {
+    border-color: #FFF;
+    color: var(--white);
+  }
+
+  @media (max-width: 600px) {
+    .resume-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>

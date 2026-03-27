@@ -1,0 +1,170 @@
+---
+import Page from '../layouts/Page.astro';
+
+
+const talks = [
+  {
+    title:  'Fireside Chat with Betty Reid Soskin',
+    event:  'Block',
+    city:   'San Francisco',
+    year:   '2023',
+    href:   '#',
+  },
+  {
+    title:  'Art, Tech, & Activism',
+    event:  '/dev/color In Motion Conference',
+    city:   'Berkeley',
+    year:   '2021',
+    href:   '#',
+  },
+  {
+    title:  'Tech Stack 101',
+    event:  'Roadmap to Billions Conference',
+    city:   'San Francisco',
+    year:   '2021',
+    href:   '#',
+  },
+  {
+    title:  'Pinterest Hack & Digital Altar featuring Emory Douglas',
+    event:  'Museum of The African Diaspora',
+    city:   'San Francisco',
+    year:   '2020',
+    href:   '#',
+  },
+  {
+    title:  'Keynote Fireside Chat with Jack Dorsey',
+    event:  '/dev/color In Motion Conference',
+    city:   'Redwood City',
+    year:   '2019',
+    href:   '#',
+  },
+];
+---
+
+<Page title="Speaking — Ayo Suber" section="Speaking">
+
+  <h1 class="page-title">Speaking</h1>
+
+  <p class="speaking-note">
+    Available for keynotes, panels, and workshops.<br />
+    <a href="mailto:hireayo@gmail.com" class="contact-link">Get in touch ↗</a>
+  </p>
+
+  <ul class="talks-list">
+    {talks.map((t) => (
+      <li class="talk-item">
+        <a href={t.href} class="talk-link">
+          <span class="talk-year">{t.year}</span>
+          <div class="talk-main">
+            <span class="talk-title">{t.title}</span>
+            <span class="talk-meta">{t.event} — {t.city}</span>
+          </div>
+          <span class="talk-arrow">↗</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+</Page>
+
+<style>
+  .page-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .speaking-note {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 64px;
+    line-height: 1.7;
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+  }
+
+  .contact-link {
+    color: var(--accent);
+    transition: opacity 0.15s;
+  }
+
+  .contact-link:hover { opacity: 0.7; }
+
+  .talks-list {
+    list-style: none;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .talk-item {
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .talk-link {
+    display: grid;
+    grid-template-columns: 52px 1fr 24px;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 0;
+    transition: padding 0.15s, background 0.15s;
+  }
+
+  .talk-link:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0 -12px;
+    background: #111;
+  }
+
+  .talk-link:hover .talk-title { color: var(--accent); }
+
+  .talk-link:hover .talk-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  .talk-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #FFF;
+    letter-spacing: 0.04em;
+    padding-top: 3px;
+  }
+
+  .talk-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .talk-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--white);
+    line-height: 1.2;
+    transition: color 0.15s;
+  }
+
+  .talk-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #FFF;
+    letter-spacing: 0.04em;
+  }
+
+  .talk-arrow {
+    font-size: 14px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s, transform 0.15s;
+    justify-self: end;
+  }
+
+  @media (max-width: 600px) {
+    .talk-link { grid-template-columns: 48px 1fr; }
+    .talk-arrow { display: none; }
+  }
+</style>

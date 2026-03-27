@@ -1,0 +1,65 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import demoVideo from '../../assets/portfolio/square_payments_calculator.mp4';
+
+const liveUrl = 'https://squareup.com/us/en/payments/fee-calculator';
+---
+
+<ProjectLayout
+  title="Square Payments Calculator"
+  year="2023"
+  tags={['Frontend', 'Design Systems', 'Calculator', 'Table']}
+  description="Interactive components to calculate Square processing fees in real time — including dynamic table components for transparent fee breakdowns across payment types."
+  liveUrl={liveUrl}
+  prevSlug="square-podcast"
+  prevTitle="Paying It Forward Podcast"
+  nextSlug="altruist-retool"
+  nextTitle="Altruist: Retool Sendgrid Manager"
+>
+
+  <div class="cs-section">
+    <span class="cs-label">Overview</span>
+    <div class="cs-body">
+      <p>
+        Square's fee calculator helps merchants understand exactly what they'll pay before committing to the platform. It's a high-traffic, high-trust page — accuracy and clarity are non-negotiable.
+      </p>
+      <p>
+        The work involved building a <strong>dynamic calculator component</strong> and a <strong>structured fee table</strong> that updates in real time as users adjust inputs.
+      </p>
+    </div>
+  </div>
+
+  <div class="cs-video">
+    <video src={demoVideo} autoplay muted loop playsinline />
+    <div class="cs-video-label">
+      <span>squareup.com — Fee Calculator</span>
+      <a href={liveUrl} target="_blank" rel="noopener">View live ↗</a>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Contribution</span>
+    <div class="cs-body">
+      <p>
+        Built the calculator and table components from design specs, wired to Square's fee logic. Ensured the components slotted cleanly into the existing design system and met accessibility requirements for a page used by merchants across every business size.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Tech stack</span>
+    <div class="cs-body">
+      <ul class="cs-stack">
+        <li>Svelte</li>
+        <li>Square Design System</li>
+        <li>Headless CMS</li>
+        <li>TypeScript</li>
+      </ul>
+    </div>
+  </div>
+
+</ProjectLayout>

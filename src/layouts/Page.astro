@@ -1,0 +1,81 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title?: string;
+  section?: string;
+}
+const { title = "Ayo Suber", section = "" } = Astro.props;
+---
+
+<Base title={title}>
+  <div class="page-wrap">
+
+    <header class="page-header">
+      <a href="/" class="back">
+        <span class="back-arrow">←</span>
+        <span class="back-name">Ayo Suber</span>
+      </a>
+      {section && <span class="section-label">{section}</span>}
+    </header>
+
+    <main class="page-content">
+      <slot />
+    </main>
+
+  </div>
+</Base>
+
+<style>
+  .page-wrap {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 36px 64px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--muted);
+    transition: color 0.18s;
+    letter-spacing: 0.04em;
+  }
+
+  .back:hover { color: var(--white); }
+
+  .back-arrow {
+    transition: transform 0.18s;
+  }
+
+  .back:hover .back-arrow {
+    transform: translateX(-4px);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .page-content {
+    flex: 1;
+  }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 20px 20px 48px; }
+    .page-header { margin-bottom: 48px; }
+  }
+</style>

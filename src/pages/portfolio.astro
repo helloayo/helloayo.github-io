@@ -1,0 +1,404 @@
+---
+import Page from '../layouts/Page.astro';
+
+import imgDesignSystem from '../assets/portfolio/square_public_web_design_system.png';
+import imgAtlanta      from '../assets/portfolio/the_future_is_built_in_atlanta.png';
+import imgChicago      from '../assets/portfolio/the_future_is_built_in_chicago.png';
+import imgPodcast      from '../assets/portfolio/pay_it_forward.png';
+import imgCalculator   from '../assets/portfolio/square_payments_calculator.png';
+
+const projects = [
+  {
+    number:  '001',
+    title:   'Square: Public Web Design System',
+    slug:    'square-design-system',
+    desc:    "A flexible and extensible web design system for Square's evolving visual identity.",
+    tags:    ['Design Systems', 'CSS', 'Architecture'],
+    year:    '2020–2023',
+    image:   imgDesignSystem.src,
+  },
+  {
+    number:  '002',
+    title:   'Square: The Future Is Built in Atlanta',
+    slug:    'square-atlanta',
+    desc:    'Shopping portal celebrating small businesses using Square in Atlanta — part of a larger multi-channel campaign.',
+    tags:    ['Frontend', 'Animations', 'Ecommerce'],
+    year:    '2021',
+    image:   imgAtlanta.src,
+  },
+  {
+    number:  '003',
+    title:   'Square: The Future Is Built in Chicago',
+    slug:    'square-chicago',
+    desc:    'The Chicago edition of the multi-city Future Is Built Here campaign.',
+    tags:    ['Frontend', 'Animations', 'Ecommerce'],
+    year:    '2021',
+    image:   imgChicago.src,
+  },
+  {
+    number:  '004',
+    title:   'Square: Paying It Forward Podcast',
+    slug:    'square-podcast',
+    desc:    'Components for embedding and managing the podcast site — self-serve for the content team.',
+    tags:    ['Frontend', 'Design Systems', 'Audio'],
+    year:    '2022',
+    image:   imgPodcast.src,
+  },
+  {
+    number:  '005',
+    title:   'Square Payments Calculator',
+    slug:    'square-calculator',
+    desc:    'Interactive fee calculator and table components for Square processing fees.',
+    tags:    ['Frontend', 'Design Systems', 'Calculator'],
+    year:    '2023',
+    image:   imgCalculator.src,
+  },
+  {
+    number:  '006',
+    title:   'Altruist: Retool Sendgrid Manager',
+    slug:    'altruist-retool',
+    desc:    'Internal tool extending Sendgrid via Retool — bulk actions, mass copy updates, full change tracking.',
+    tags:    ['Retool', 'Sendgrid', 'Internal Tooling'],
+    year:    '2025',
+    image:   null,
+  },
+];
+---
+
+<Page title="Portfolio — Ayo Suber" section="Portfolio">
+
+  <div class="portfolio-header">
+    <h1 class="page-title">Work</h1>
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btn-list" aria-label="List view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="0" y="2"  width="16" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="0" y="7"  width="16" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="0" y="12" width="16" height="1.5" rx="0.75" fill="currentColor"/>
+        </svg>
+        List
+      </button>
+      <button class="toggle-btn" id="btn-grid" aria-label="Grid view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="0" y="0" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="9" y="0" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="0" y="9" width="7" height="7" rx="1" fill="currentColor"/>
+          <rect x="9" y="9" width="7" height="7" rx="1" fill="currentColor"/>
+        </svg>
+        Grid
+      </button>
+    </div>
+  </div>
+
+  <!-- LIST VIEW -->
+  <ul class="project-list" id="view-list">
+    {projects.map((p) => (
+      <li class="project-item">
+        <a href={`/portfolio/${p.slug}`} class="project-link">
+          <span class="project-num">{p.number}</span>
+          <div class="project-main">
+            <span class="project-title">{p.title}</span>
+            <span class="project-desc">{p.desc}</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-tags">{p.tags.join(' · ')}</span>
+            <span class="project-year">{p.year}</span>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- GRID VIEW -->
+  <div class="project-grid" id="view-grid">
+    {projects.map((p) => (
+      <a href={`/portfolio/${p.slug}`} class="project-card">
+        <div class="card-image">
+          {p.image ? (
+            <img src={p.image} alt={p.title} loading="lazy" />
+          ) : (
+            <div class="card-image-placeholder">
+              <span>Internal Tool</span>
+            </div>
+          )}
+          <span class="card-num">{p.number}</span>
+        </div>
+        <div class="card-body">
+          <p class="card-title">{p.title}</p>
+          <div class="card-footer">
+            <span class="card-tags">{p.tags.join(' · ')}</span>
+            <span class="card-year">{p.year}</span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+</Page>
+
+<style>
+  /* ---- HEADER ---- */
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+
+  .page-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  /* ---- TOGGLE ---- */
+  .view-toggle {
+    display: flex;
+    gap: 2px;
+    border: 1px solid #1a1a1a;
+    padding: 3px;
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .toggle-btn:hover  { color: var(--white); }
+  .toggle-btn.active { background: #1a1a1a; color: var(--white); }
+
+  /* ---- LIST VIEW ---- */
+  .project-list {
+    list-style: none;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .project-item { border-bottom: 1px solid #1a1a1a; }
+
+  .project-link {
+    display: grid;
+    grid-template-columns: 52px 1fr auto 24px;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 0;
+    transition: background 0.15s, padding 0.15s;
+  }
+
+  .project-link:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0 -12px;
+    background: #111;
+  }
+
+  .project-link:hover .project-title { color: var(--accent); }
+  .project-link:hover .project-arrow { opacity: 1; transform: translate(2px, -2px); }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #333;
+    letter-spacing: 0.05em;
+  }
+
+  .project-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--white);
+    transition: color 0.15s;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .project-tags {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 0.06em;
+    text-align: right;
+  }
+
+  .project-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #2a2a2a;
+    letter-spacing: 0.04em;
+  }
+
+  .project-arrow {
+    font-size: 14px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+
+  /* ---- GRID VIEW ---- */
+  .project-grid {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .project-grid.active { display: grid; }
+  .project-list.hidden  { display: none; }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background: #111;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .project-card:hover { background: #161616; }
+  .project-card:hover .card-image img { transform: scale(1.03); }
+  .project-card:hover .card-title { color: var(--accent); }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #1a1a1a;
+  }
+
+  .card-image-placeholder span {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  .card-num {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    background: rgba(10,10,10,0.7);
+    padding: 3px 8px;
+  }
+
+  .card-body {
+    padding: 20px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--white);
+    transition: color 0.2s;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .card-tags {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .card-year {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: #333;
+  }
+
+  @media (max-width: 700px) {
+    .project-grid { grid-template-columns: 1fr; }
+    .project-link {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 8px 16px;
+    }
+    .project-num   { display: none; }
+    .project-arrow { display: none; }
+    .project-meta  { align-items: flex-start; }
+    .project-tags  { text-align: left; }
+  }
+</style>
+
+<script>
+  const btnList  = document.getElementById('btn-list');
+  const btnGrid  = document.getElementById('btn-grid');
+  const viewList = document.getElementById('view-list');
+  const viewGrid = document.getElementById('view-grid');
+
+  btnList.addEventListener('click', () => {
+    btnList.classList.add('active');
+    btnGrid.classList.remove('active');
+    viewList.classList.remove('hidden');
+    viewGrid.classList.remove('active');
+  });
+
+  btnGrid.addEventListener('click', () => {
+    btnGrid.classList.add('active');
+    btnList.classList.remove('active');
+    viewGrid.classList.add('active');
+    viewList.classList.add('hidden');
+  });
+</script>

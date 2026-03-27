@@ -1,0 +1,62 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import demoVideo from '../../assets/portfolio/pay_it_forward.mp4';
+
+const liveUrl = 'https://squareup.com/us/en/the-bottom-line/podcasts/paying-it-forward';
+---
+
+<ProjectLayout
+  title="Square: Paying It Forward Podcast"
+  year="2022"
+  tags={['Frontend', 'Design Systems', 'Audio']}
+  description="Built the components for embedding and managing Square's Paying It Forward podcast — making it simple for the content team to publish and update episodes without engineering support."
+  liveUrl={liveUrl}
+  prevSlug="square-chicago"
+  prevTitle="The Future Is Built in Chicago"
+  nextSlug="square-calculator"
+  nextTitle="Payments Calculator"
+>
+
+  <div class="cs-section">
+    <span class="cs-label">Overview</span>
+    <div class="cs-body">
+      <p>
+        <strong>Paying It Forward</strong> is Square's podcast series following the journeys of small business owners. The content team needed a reliable, low-friction way to publish new episodes and update the archive without filing engineering tickets.
+      </p>
+    </div>
+  </div>
+
+  <div class="cs-video">
+    <video src={demoVideo} autoplay muted loop playsinline />
+    <div class="cs-video-label">
+      <span>squareup.com — Paying It Forward</span>
+      <a href={liveUrl} target="_blank" rel="noopener">View live ↗</a>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Contribution</span>
+    <div class="cs-body">
+      <p>
+        Built the <strong>podcast embed components</strong> and episode listing infrastructure, integrated with the CMS so the podcast team could manage everything from a content editor. No engineering handoff needed to add or update episodes.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Tech stack</span>
+    <div class="cs-body">
+      <ul class="cs-stack">
+        <li>Svelte</li>
+        <li>Headless CMS</li>
+        <li>Audio Embed APIs</li>
+        <li>Square Design System</li>
+      </ul>
+    </div>
+  </div>
+
+</ProjectLayout>

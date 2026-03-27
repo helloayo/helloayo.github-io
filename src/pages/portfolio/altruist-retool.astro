@@ -1,0 +1,85 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+---
+
+<ProjectLayout
+  title="Altruist: Retool Sendgrid Manager"
+  year="2025"
+  tags={['Retool', 'Sendgrid', 'Internal Tooling']}
+  description="An internal tool built in Retool that dramatically extended Sendgrid's native capabilities — giving the marketing team bulk action powers, mass copy updates, and a full audit trail without engineering involvement."
+  prevSlug="square-calculator"
+  prevTitle="Square Payments Calculator"
+>
+
+  <div class="cs-section">
+    <span class="cs-label">Overview</span>
+    <div class="cs-body">
+      <p>
+        Altruist's marketing team was managing hundreds of email templates in Sendgrid — a tool powerful for sending, but limited for bulk operations and governance. Simple tasks like updating a legal disclaimer across all templates required manual, one-by-one edits.
+      </p>
+      <p>
+        The solution was a <strong>Retool application</strong> that wrapped Sendgrid's API with the specific workflows the team actually needed.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Problem</span>
+    <div class="cs-body">
+      <p>
+        No way to search past mailings by content or metadata. Promoting drafts to production required navigating Sendgrid's UI template by template. Bulk copy changes — like updating a legal disclaimer across 80 templates — had no tooling support and took hours.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Solution</span>
+    <div class="cs-body">
+      <p>
+        Built a Retool app with four core capabilities: <strong>search past mailings</strong> by subject, date, or content; <strong>promote drafts</strong> to production in bulk; <strong>delete stale templates</strong> with safety confirmation; and <strong>mass update copy</strong> across any selection of templates — with full change logging on every action.
+      </p>
+      <p>
+        The change log meant the team had a clear audit trail — who changed what, when, and from what previous value — which also satisfied compliance requirements.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Impact</span>
+    <div class="cs-body">
+      <p>
+        What previously took hours of manual Sendgrid navigation became a minutes-long workflow. The marketing team gained full self-service capability for email operations that previously required engineering tickets.
+      </p>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <div class="cs-section">
+    <span class="cs-label">Tech stack</span>
+    <div class="cs-body">
+      <ul class="cs-stack">
+        <li>Retool</li>
+        <li>Sendgrid API</li>
+        <li>JavaScript</li>
+        <li>REST APIs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <span class="cs-label">Note</span>
+    <div class="cs-body">
+      <p>
+        This is an internal tool — no live demo available. Screenshots on request.
+      </p>
+    </div>
+  </div>
+
+</ProjectLayout>
